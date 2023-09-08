@@ -1,21 +1,16 @@
 #!/bin/bash
-
-# Check if the CFILE variable is set
-if [ -z "$CFILE" ]; then
-    echo "Error: The CFILE variable is not set."
-    exit 1
-fi
-
-# Extract the base name of the C file (without the extension)
-BASENAME=$(basename "$CFILE" .c)
-
-# Generate the assembly code in Intel syntax and save it to a .s file
-gcc -S -masm=intel "$CFILE" -o "$BASENAME.s"
-
-# Check if the compilation was successful
-if [ $? -eq 0 ]; then
-    echo "Assembly code (Intel syntax) generated successfully and saved as $BASENAME.s"
-else
-    echo "Error: Failed to generate assembly code."
-    exit 1
-fi
+#include <stdio.h>
+/**
+ * main - Entry point
+ *
+ * Return: always 0
+ */
+int main(void)
+{
+	printf("Size of a char: %d byte(s)\n", sizeof(char));
+	printf("Size of an int: %d byte(s)\n", sizeof(int));
+	printf("Size of a long int: %d byte(s)\n", sizeof(long int));
+	printf("Size of a long long int: %d byte(s)\n", sizeof(long long int));
+	printf("Size of a float: %d byte(s)\n", sizeof(float));
+	return (0);
+}
